@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 
 public class HotelReservationTest {
 
@@ -29,9 +30,24 @@ public class HotelReservationTest {
         hotelReservation.addHotel("Lakewood", 3, 110, 90);
         hotelReservation.addHotel("Bridgewood", 4, 160, 50);
         hotelReservation.addHotel("ridgewood", 5, 220, 150);
-        LocalDate startDate = LocalDate.of(2021, Month.SEPTEMBER, 10);
+        LocalDate startDate = LocalDate.of(2021, Month.SEPTEMBER, 11);
         LocalDate endDate = LocalDate.of(2021, Month.SEPTEMBER, 12);
-        String hotelName = hotelReservation.getCheapestHotel(startDate, endDate);
-        Assert.assertEquals("Lakewood", hotelName);
+        ArrayList<Hotel> hotel = hotelReservation.getCheapestHotel(startDate, endDate);
+        String hotelName = hotel.get(0).getHotelName();
+        Assert.assertEquals("Bridgewood", hotelName);
+    }
+
+    /*
+     *Test case to check cheapest and best rated hotel
+     */
+    @Test
+    public void givenHotelDetails_WhenHotelPricesAreSame_shouldReturnHighestRatedHotel(){
+        HotelReservation hotelReservation = new HotelReservation();
+        hotelReservation.addHotel("Lakewood", 3, 110, 90);
+        hotelReservation.addHotel("Bridgewood", 4, 150, 50);
+        LocalDate startDate = LocalDate.of(2021, Month.SEPTEMBER, 11);
+        LocalDate endDate = LocalDate.of(2021, Month.SEPTEMBER, 12);
+        Hotel hotel = hotelReservation.getCheapestBestRatedHotel(startDate, endDate);
+        Assert.assertEquals("Bridgewood", hotel.getHotelName());
     }
 }
