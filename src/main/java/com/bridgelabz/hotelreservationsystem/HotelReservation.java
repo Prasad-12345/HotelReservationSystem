@@ -6,25 +6,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 /*
  *Author: Prasad
- *Ability to find the cheapest Hotel for a given Date Range - I/P – 10Sep2020, 11Sep2020 - O/P – Lakewood
+ *Ability to add weekday and weekend rates for each Hotel
  */
 public class HotelReservation {
     ArrayList<Hotel> hotelList = new ArrayList<Hotel>();
     Hotel hotel;
 
     //Method to add hotel
-    public void addHotel(String hotelName, int rating, double regularCustomerRate) {
+    public void addHotel(String hotelName, int rating, double weekdayRegularRates, double weekendRegularRates) {
         hotel = new Hotel();
         hotel.setHotelName(hotelName);
         hotel.setRating(rating);
-        hotel.setRegularCustomerRates(regularCustomerRate);
+        hotel.setWeekdayRegularRates(weekdayRegularRates);
+        hotel.setWeekendRegularRates(weekendRegularRates);
 
         hotelList.add(hotel);
         System.out.println("Successfully ADDED !!");
     }
 
     //Method to return cheapest hotel
-    public List<Hotel> getCheapestHotel(LocalDate startDate, LocalDate endDate){
+/*    public List<Hotel> getCheapestHotel(LocalDate startDate, LocalDate endDate){
         return hotelList.stream().sorted((hotel1, hotel2) -> String.valueOf(hotel1.getRegularCustomerRates()).compareTo(String.valueOf(hotel2.getRegularCustomerRates()))).collect(Collectors.toList());
-    }
+    }*/
 }
